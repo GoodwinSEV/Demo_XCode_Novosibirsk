@@ -14,80 +14,100 @@ struct LogInView: View {
     @StateObject var userViewModel = UserViewModel()
     
     var body: some View {
-        VStack{
+        
+        VStack(alignment: .leading){
             Text("Welcome Back")
                 .font(.custom("Roboto-Medium", size: 24))
+                .padding(.top, 10)
             Text("Fill in your email and password to continue")
-            VStack (alignment: .leading, spacing: 10){
-                Text("Email Address")
-                CustomTextField(placeholder: "**********@mail.com", text: $userViewModel.email)
-                Text("Password")
-                CustomPasswordField(placeholder: "**********", text: $userViewModel.password)
+                .foregroundStyle(.gray)
+                .padding(.top, 10)
+            Text("Email Address")
+                .foregroundStyle(.gray)
+                .padding(.top, 10)
+            CustomTextField(placeholder: "**********@mail.com", text: $userViewModel.email)
+            Text("Password")
+                .foregroundStyle(.gray)
+                .padding(.top, 10)
+            CustomPasswordField(placeholder: "**********", text: $userViewModel.password)
+            
+            HStack{
+                CheckBox(value: $checkBox)
+                    .padding(.top, 15)
+                    .foregroundStyle(.gray)
+                Text("Remember password")
+                    .padding(.top, 15)
+                Spacer()
                 
+                NavigationLink(destination: ForgotPasswordView()){
+                    Text("Forgot password")
+                    //    .background(Color.blue)
+                }
+                // .padding(.leading, 10)
+                .padding(.top, 15)
+                .font(.custom("Roboto-Regular", size: 16))
+                .foregroundStyle(.blue)
                 
             }
-            .padding()
+          
             
             HStack{
                 
                 NavigationLink(destination: Home(), isActive: $userViewModel.isNavigate)                { EmptyView() }
                 Button(action: {
                     userViewModel.signIn()
-//                    if login != "" {
-//                        isShowingDetailView.toggle()
-//                    }
-//                    else {
-//                        isShowAlert=true
-//                        print(isShowAlert.description)
-//                    }
                 })
                 { Text("Log in")
-                        .frame(width: 342, height: 30)
+                        .frame(height: 56)
+                        .frame(maxWidth: .infinity)
                         .font(.custom("Roboto-Bold", size: 16))
-                        .padding()
-                        .background(.gray)
+                    //   .padding()
+                        .background(.buttonGrey)
                         .foregroundColor(.white)
                         .cornerRadius(4)
                 }
-//                .alert(isPresented: $isShowAlert) {
-//                    Alert(title: Text ("Ошибка"),
-//                          message: Text("Заполнены не все поля"),
-//                          dismissButton: .default(Text("OK")))
-//                }
-                
-                
-             
-                
+                                       
             }
+            .padding(.top, 100)
             
             HStack{
-                CheckBox(value: $checkBox)
+                Text("Already have an account?")
+                    .padding(.leading, 10)
+                    .padding(.top, 15)
+                    .font(.custom("Roboto-Medium", size: 16))
+                    .foregroundStyle(.gray)
+                NavigationLink(destination: LogInView()){
+                    Text("SignUp")
+                        .font(.custom("Roboto-Medium", size: 16))
+                        .foregroundColor(.blue)
+                }
+               // .padding(.leading, 10)
+                .padding(.top, 15)
+                .font(.custom("Roboto-Medium", size: 16))
+                .foregroundStyle(.blue)
                 
-                Text("Remember password")
-                Spacer()
-                
-                Link(destination: URL(string: "https://ya.ru")!) {Text("Forgot password")}
                 
             }
-            .padding()
+            .frame(maxWidth: .infinity, alignment: .center)
+            //  .background(Color.yellow)
             
-            
-            Text("Already have an account?")
-            
-            NavigationLink(destination: LogInView()){
-                            Text("SignUp")
-//                                    .foregroundColor(.red)
-//                                    .padding()
-//                                    .background(Color.blue)
+            VStack{
+                Text("or log in using")
+                    .font(.custom("Roboto-Medium", size: 16))
+                    .padding(.top, 30)
+                    .foregroundStyle(.buttonGrey)
+                            
+                Image("Vector")
+                    .imageScale(.large)
+                    .foregroundStyle(.tint)
             }
-
+            .frame(maxWidth: .infinity, alignment: .center)
             
-            Text("or log in using")
-            
-            Image("Vector")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
         }
+        
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .padding(10)
+        //   .padding(.top, 50)
     }
 }
 

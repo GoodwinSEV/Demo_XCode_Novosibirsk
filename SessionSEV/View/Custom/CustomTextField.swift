@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CustomTextField: View {
     let placeholder: String
+  //  let label: String
     @Binding var text: String
     var body: some View{
         ZStack{

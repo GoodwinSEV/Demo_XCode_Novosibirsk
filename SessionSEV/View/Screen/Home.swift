@@ -72,7 +72,7 @@ struct Home: View {
                 }
             TrackView()
                 .tabItem {
-                    Image( "smart")
+                    Image( "smart-car")
                     Text("Track")
                 }
             ProfileView()
