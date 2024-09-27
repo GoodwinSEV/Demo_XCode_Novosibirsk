@@ -53,7 +53,7 @@ struct ProfileView: View {
                 .font(.largeTitle)
                 .foregroundColor(.blue)
             Text("Profile")
-        }
+        }.navigationBarTitle("flkdlk", displayMode: .inline)
     }
 }
 
@@ -67,17 +67,17 @@ struct Home: View {
                 }
             WalletView()
                 .tabItem {
-                    Image(systemName: "wallet-3")
+                    Image( "wallet-3")
                     Text("Wallet")
                 }
             TrackView()
                 .tabItem {
-                    Image(systemName: "track")
+                    Image( "smart")
                     Text("Track")
                 }
             ProfileView()
                 .tabItem {
-                    Image(systemName: "profile-circle")
+                    Image( "profile-circle")
                     Text("Profile")
                 }
             

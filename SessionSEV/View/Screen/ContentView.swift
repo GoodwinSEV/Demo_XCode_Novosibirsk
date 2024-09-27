@@ -64,7 +64,7 @@ struct ContentView: View {
                             .foregroundColor(.white)
                             .cornerRadius(4)
                     }
-                    .alert(isPresented: $isShowAlert) {
+                    .alert(isPresented: $userViewModel.isShowAlert){//$isShowAlert) {
                         Alert(title: Text ("Ошибка"),
                               message: Text("Заполнены не все поля"),
                               dismissButton: .default(Text("OK")))

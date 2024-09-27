@@ -26,38 +26,36 @@ class UserViewModel: ObservableObject{
     
     func signUp() {
         
-        //            if user.name != "" {
-        //                                        isShowingDetailView.toggle()
-        //                                    }
-        //                                    else {
-        //                                        isShowAlert=true
-        //                                        print(isShowAlert.description)
-        //                                    }
-        //
-        Task {
-            do {
-                await MainActor.run {
-                    self.isProgress = true
-                }
-                try await Repositories.instance.signUp(name: user.name, phone: user.phone, email: email, password: password)
-                await MainActor.run {
-                    self.isNavigate = true
-                    self.isProgress = false
-                }
-            } catch {
-                print("ERROR: " + error.localizedDescription)
-                await MainActor.run {
-                    self.error = true
-                    self.isProgress = false
+        if password == confirmPassword {
+            
+            Task {
+                do {
+                    await MainActor.run {
+                        self.isProgress = true
+                    }
+                    try await Repositories.instance.signUp(name: user.name, phone: user.phone, email: email, password: password)
+                    await MainActor.run {
+                        self.isNavigate = true
+                        self.isProgress = false
+                    }
+                } catch {
+                    print("ERROR: " + error.localizedDescription)
+                    await MainActor.run {
+                        self.error = true
+                        self.isProgress = false
+                    }
                 }
             }
         }
+        else
+        {isShowAlert = true}
     }
+    
     
     func signIn() {
         
-     //   if email == "1@mail.ru" {
-//                isShowingDetailView.toggle()
+       // if email == "1@mail.ru" {
+            //                isShowingDetailView.toggle()
             Task {
                 do {
                     await MainActor.run {
@@ -77,11 +75,12 @@ class UserViewModel: ObservableObject{
                 }
             }
         }
-//            else {
-//                isShowAlert=true
-//                print(isShowAlert.description)
-//            }
-   //     }
-    }
+//        else {
+//            isShowAlert = true
+//            //                print(isShowAlert.description)
+//        }
+//        //     }
+  //  }
+}
     
 
